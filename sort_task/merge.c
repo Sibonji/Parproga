@@ -30,12 +30,13 @@ int main(int argc, char** argv) {
     }
 
     if (process_rank == MASTER) {
+        printf("\n%d numbers in start array:\n",OUTPUT_NUM);
         for (int j = 0; j < array_size; j++) {
             if ((j % (array_size / OUTPUT_NUM)) == 0) {
                 printf("%d ",array[j]);
             }
         } 
-        printf("\n");
+        printf("\n\n");
 
         timer_start = MPI_Wtime();
     }
@@ -59,12 +60,13 @@ int main(int argc, char** argv) {
 		int *other_array = calloc(array_size, sizeof(int));
 		mergeSort(sorted, other_array, 0, (array_size - 1));
 		
+        printf("\n%d numbers in sorted array:\n",OUTPUT_NUM);
         for (int j = 0; j < array_size; j++) {
             if ((j % (array_size / OUTPUT_NUM)) == 0) {
                 printf("%d ",sorted[j]);
             }
         } 
-        printf("\n");
+        printf("\n\n");
 
         timer_end = MPI_Wtime();
 
